@@ -7,13 +7,24 @@
 </head>
 <body>
     <form action="/tyumon2" method="post">
-        品番ID <input type="text" name="hinban_id">
+        品目<select name="hinban_id">
+            <option value="1">テレビ</option>
+            <option value="2">テニスラケット</option>
+            <option value="3">ジュース</option>
+            <option value="4">鯖の缶詰</option>
+            <option value="5">野球グローブ</option>
+            <option value="6">冷蔵庫</option>
+        </select>
         <br>
-        個数 <input type="text" name="kosuu">
+        個数 <input type="number" name="kosuu">
         <br>
-        名簿ID <input type="text"name="meibo_id">
+        名前 <select name="meibo_id">
+            <option value="1">杉﨑</option>
+            <option value="2">山田</option>
+            <option value="3">佐藤</option>
+        </select>
         <br>
-        注文時価格 <input type="text" name="tyumonzikakaku">
+        注文時価格 <input type="number" name="tyumonzikakaku">
         <br>
         状態 <input type="text" name="jotai">
         <button type="submit">決定</button>
