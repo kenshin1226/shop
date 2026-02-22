@@ -41,7 +41,14 @@ def hinban2():
     return ""
 @app.route('/tyumon')
 def tyumon():
-    return render_template('tyumon.html')
+    conn=sqlite3.connect('sugizaki.db')
+    cur=conn.cursor()
+    cur.execute('select id,first_name,last_name from meibo')
+    meibolist=cur.fetchall()
+    cur.execute('select id,hinmoku from hinban')
+    hinmokulist=cur.fetchall()
+    conn.close()
+    return render_template('tyumon.html',meibolist2=meibolist,hinmokulist2=hinmokulist) 
 @app.route('/tyumon2',methods=["POST"])
 def tyumon2():
     hinban_id=request.form.get("hinban_id")
@@ -58,5 +65,8 @@ def tyumon2():
     conn.commit()
     conn.close()
     return ""
+@app.route('/user_buy')
+def userbuy():
+    return render_template('userbuy.html')
 if __name__ =="__main__":
     app.run(debug=True)

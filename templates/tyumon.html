@@ -8,20 +8,20 @@
 <body>
     <form action="/tyumon2" method="post">
         品目<select name="hinban_id">
-            <option value="1">テレビ</option>
-            <option value="2">テニスラケット</option>
-            <option value="3">ジュース</option>
-            <option value="4">鯖の缶詰</option>
-            <option value="5">野球グローブ</option>
-            <option value="6">冷蔵庫</option>
+            {%for goods in hinmokulist2 %}
+            <option value="{{goods[0]}}">{{goods[1]}}</option>
+            {% endfor %}
         </select>
         <br>
         個数 <input type="number" name="kosuu">
         <br>
         名前 <select name="meibo_id">
-            <option value="1">杉﨑</option>
+            {% for item in meibolist2 %}
+            <option value="{{item[0]}}">{{item[1]}}{{item[2]}}</option>
+            {% endfor %}
+            <!-- <option value="1">杉﨑</option>
             <option value="2">山田</option>
-            <option value="3">佐藤</option>
+            <option value="3">佐藤</option> -->
         </select>
         <br>
         注文時価格 <input type="number" name="tyumonzikakaku">
