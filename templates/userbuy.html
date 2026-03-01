@@ -6,13 +6,16 @@
     <title>Document</title>
 </head>
 <body>
+    <form action="/user_buy2">
         名前 <select name="meibo_id">
-        {% for item in meibolist2 %}
+        {% for item in meibo %}
         <option value="{{item[0]}}">{{item[1]}}{{item[2]}}</option>
         {% endfor %}
         <!-- <option value="1">杉﨑</option>
         <option value="2">山田</option>
         <option value="3">佐藤</option> -->
     </select>
+        <button type="submit">決定</button>
+    </form>
 </body>
 </html>

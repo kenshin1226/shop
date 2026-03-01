@@ -67,6 +67,25 @@ def tyumon2():
     return ""
 @app.route('/user_buy')
 def userbuy():
-    return render_template('userbuy.html')
+    conn=sqlite3.connect('sugizaki.db')
+    cur=conn.cursor()
+    cur.execute('select id,first_name,last_name from meibo')
+    meibolist=cur.fetchall()
+    return render_template('userbuy.html',meibo=meibolist)
+@app.route('/user_buy2',methods=["POST"])
+def userbuy2():
+    meibo_id=request.form.get("meibo_id")
+    print("@78,",meibo_id)
+    conn=sqlite3.connect('sugizaki.db')
+    cur=conn.cursor()
+    cur.execute(
+        "select meibo.last_name,meibo.first_name,hinban.kakaku,kosuu,hinban.hinmoku from tyumon join meibo on tyumon.meibo_id=meibo.id join hinban on tyumon.hinban_id=hinban.id where meibo_id=?;",
+        (meibo_id)
+    )
+    rows = cur.fetchall()
+    conn.commit()
+    conn.close()    
+    print(rows)
+    return ""
 if __name__ =="__main__":
     app.run(debug=True)
